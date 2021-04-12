@@ -1,24 +1,54 @@
-# README
+# Messenger
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A GraphQL API for chatting.
 
-Things you may want to cover:
+# Setup
 
-* Ruby version
+This project uses PostgreSQL database. So be sure to have that install before hand. You can install it via homebrew as follows, then follow the instructions on the screen to start the service:
+```bash
+$ brew install postgresql
+```
 
-* System dependencies
+I also use [Puma-dev](https://github.com/puma/puma-dev) to get a .test domain for the app. Install as follows, then follow the instructions on screen to setup.
+```bash
+$ brew install puma-dev
+```
 
-* Configuration
+Finally, I use [GraphQL IDE](https://github.com/andev-software/graphql-ide), to run queries. [Download](https://github.com/andev-software/graphql-ide/releases/download/v1.1.1/GraphQL.IDE.zip)
 
-* Database creation
+Environment Options
+Title: Development
+Method: POST
+URL: https://www.messenger.test/graphql
 
-* Database initialization
+Clone the repo, setup the database and run migrations.
 
-* How to run the test suite
+```bash
+$ git clone git@github.com:aaronprice/messenger.git
+$ cd messenger
+$ bundle
+$ bundle exec rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# Queries to run
 
-* ...
+### Create a user
+```
+mutation UserSignUp {
+  userSignUp(input: { name: "John Smith" }) {
+    user {
+      id
+      name
+      authToken
+    }
+    errors {
+      field
+      messages
+    }
+  }
+}
+```
+
+After you've created a user, add the value of `authToken` to the environment header in GraphQL IDE with the key `X-USER-TOKEN`. You will be signed in as this user from this point on.
+

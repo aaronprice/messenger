@@ -29,10 +29,19 @@ module Messenger
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Eastern Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '/graphql', headers: :any, methods: [:get, :post, :options, :head]
+      end
+    end
+
+    config.active_record.belongs_to_required_by_default = false
   end
 end

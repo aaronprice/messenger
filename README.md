@@ -14,13 +14,13 @@ Implement a chat application that supports the following features:
 1. As a consumer of the API, I can see chat statistics of users and channels
 
 
-### Reasoning and assumptions
+### Reasoning, Assumptions, and Growth
 
 I chose to focus on the Back-end primarily because that's where you said that you need to most help. It is also where I'm strongest. 
 
-For the type of chat, I considered live chat via ActionCable, a simple REST API, and GraphQL. Ultimately I chose GraphQL because I believe it's the most powerfull, flexible, and full featured API I've worked with. I've setup mutations, and form objects to be build for scale. 
+For the type of chat, I considered live chat via ActionCable, a simple REST API, and GraphQL. Ultimately I chose GraphQL because I believe it's the most powerfull, flexible, and full featured API to worked with. I've setup mutations and form objects, and namespaced them under each feature set (Users, and Chats) to be prepare for scale. 
 
-I've namespaced things to do with Users separately from Chat to demonstrate an easy way to prepare for scale.
+Namespaces are consistent across GraphQL (front-end of the back-end) and Services (back-end of the back-end).
 
 All endpoints have been tested via RSpec.
 
@@ -28,18 +28,22 @@ In terms of service objects. I don't really see a need to include service object
 
 In my opinion, services are only called after all data has been validated and persisted. 
 
+I chose to stop development without implementing statistics because I believe enough has been implemented that you get a sense of the foundation that is being built. I am definitely looking forward to some feedback on the work, though. Likes, dislikes, etc.
+
+I see many areas in which this application could grow. It could very well be the foundation of an app like slack, with direct messaging, threads, emojies, mentions, etc.
 
 # Setup
 
-This project uses PostgreSQL database. So be sure to have that install before hand. You can install it via homebrew as follows, then follow the instructions on the screen to start the service:
+This project uses PostgreSQL database. So be sure to have that installed before hand. You can install it via homebrew as follows, then follow the instructions on the screen to start the service:
 ```bash
 $ brew install postgresql
 ```
 
-I also use [Puma-dev](https://github.com/puma/puma-dev) to get a .test domain for the app. Install as follows, then follow the instructions on screen to setup.
+I also use [Puma-dev](https://github.com/puma/puma-dev) to get a `.test` domain for the app. Install as follows, then follow the instructions on screen to setup.
 ```bash
 $ brew install puma-dev
 ```
+**NOTE:** Be sure to symlink the app directory into `~/.puma-dev/`
 
 Finally, I use [GraphQL IDE](https://github.com/andev-software/graphql-ide), to run queries. [Download](https://github.com/andev-software/graphql-ide/releases/download/v1.1.1/GraphQL.IDE.zip)
 
@@ -56,6 +60,11 @@ $ cd messenger
 $ bundle
 $ bundle exec rails db:create
 $ bundle exec rails db:migrate
+```
+
+To run the tests:
+```bash
+$ bundle exec rspec spec
 ```
 
 
@@ -79,6 +88,9 @@ mutation UserSignUp {
 ```
 
 After you've created a user, add the value of `authToken` to the environment header in GraphQL IDE with the key `X-USER-TOKEN`. You will be signed in as this user from this point on.
+
+**NOTE:** I do not consider this type of authentication production ready.
+
 
 ### Create a message
 ```
@@ -134,7 +146,12 @@ query Channels {
 }
 ```
 
+An easy improvement to this would be to filter channels by name.
+
 ### Search for images
+
+Images from Giphy
+
 ```
 query Images {
   images(search: "funny") {
@@ -153,3 +170,5 @@ query Users {
   }
 }
 ```
+
+An easy way to improve this feature would be to filter users based on name.

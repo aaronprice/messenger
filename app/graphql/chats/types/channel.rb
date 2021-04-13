@@ -11,6 +11,8 @@ module Chats
       field :id, ID, null: false
       field :name, String, null: false
       field :messages, Chats::Types::Message.connection_type, null: true
+      field :users_count, Int, null: false
+      field :messages_count, Int, null: false
 
       # == Relationships ========================================================
 

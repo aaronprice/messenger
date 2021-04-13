@@ -24,7 +24,9 @@ type Channel {
     """
     last: Int
   ): MessageConnection
+  messagesCount: Int!
   name: String!
+  usersCount: Int!
 }
 
 """

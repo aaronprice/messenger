@@ -24,11 +24,9 @@ Namespaces are consistent across GraphQL (front-end of the back-end) and Service
 
 All endpoints have been tested via RSpec.
 
-In terms of service objects. I don't really see a need to include service objects in this application because of the simplicity, but for insight into how I would implement service objects, they would be setup as operations under each namespace as seen in the [back_ops](https://github.com/aaronprice/back_ops) gem I created.
+I've created a simple service that updates that stats for a channel after a message has been posted. I realize the functionality could be pulled off by cache counters in Rails, but I built the service to illustrate how I would implement a service in this architecture.
 
-In my opinion, services are only called after all data has been validated and persisted. 
-
-I chose to stop development without implementing statistics because I believe enough has been implemented that you get a sense of the foundation that is being built. I am definitely looking forward to some feedback on the work, though. Likes, dislikes, etc.
+I am definitely looking forward to some feedback on the work, though. Likes, dislikes, etc.
 
 I see many areas in which this application could grow. It could very well be the foundation of an app like slack, with direct messaging, threads, emojies, mentions, etc.
 
@@ -66,6 +64,13 @@ To run the tests:
 ```bash
 $ bundle exec rspec spec
 ```
+
+Because this app uses background jobs, you'll need to spin up a sidekiq worker as follows:
+```
+bundle exec sidekiq
+```
+
+You can then monitor and manage the jobs at [https://www.messenger.test/sidekiq](https://www.messenger.test/sidekiq).
 
 
 # Queries to run
@@ -108,6 +113,8 @@ mutation ChatMessageCreate {
       }
       channel {
         name
+        usersCount
+        messagesCount
       }
     }
     errors {
@@ -127,6 +134,8 @@ query Channels {
       node {
         id
         name
+        usersCount
+        messagesCount
         messages {
           edges {
             node {

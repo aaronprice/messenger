@@ -44,10 +44,12 @@ module Chats
         errors.add(:base, 'Either body or image_url is required')
       end
 
-      def create_message
+      def create_message        
         ActiveRecord::Base.transaction do
           channel = Channel.create_or_find_by!(name: channel_name.strip.downcase)
           self.message = Message.create(channel: channel, user: current_user, body: body, image_url: image_url)
+          
+          Chats::Operations::UpdateChannelStats.call(channel)
         end
       end
     end

@@ -55,6 +55,10 @@ describe 'chatMessageCreate', type: :graphql do
       },
       'imageUrl' => image_url
     })
+
+    channel = Channel.find_by(name: channel_name)
+    expect(channel.users_count).to eq(1)
+    expect(channel.messages_count).to eq(1)
   end
 
   it 'blank content' do

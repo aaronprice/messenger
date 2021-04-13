@@ -1,2 +1,4 @@
 default:
   name: 'default'
+  users_count: 1
+  messages_count: 1

@@ -146,11 +146,15 @@ query Channels {
 }
 ```
 
+GraphQL comes with pagination built in, see [here](https://graphql.org/learn/pagination/#pagination-and-edges) for how to use it.
+
+Both Channels, and Messages are paginated.
+
 An easy improvement to this would be to filter channels by name.
 
 ### Search for images
 
-Images from Giphy
+Images from Giphy. 
 
 ```
 query Images {
@@ -165,10 +169,16 @@ query Images {
 ```
 query Users {
   users {
-    id
-    name
+    edges {
+      node {
+        id
+        name
+      }
+    }
   }
 }
 ```
+
+Users has also been paginated, see [here](https://graphql.org/learn/pagination/#pagination-and-edges) for how to use it.
 
 An easy way to improve this feature would be to filter users based on name.

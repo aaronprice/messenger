@@ -106,3 +106,11 @@ query Channels {
   }
 }
 ```
+
+# Search for images
+query Images {
+  images(search: "funny") {
+    id
+    url
+  }
+}

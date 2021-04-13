@@ -9,6 +9,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'graphql', '~> 1.12', '>= 1.12.3'
+gem 'giphy', '~> 3.0'
 
 # Assets
 gem 'sass-rails', '>= 6'

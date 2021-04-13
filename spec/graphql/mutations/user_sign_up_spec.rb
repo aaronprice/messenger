@@ -33,7 +33,7 @@ describe 'userSignIn', type: :graphql do
 
   it 'invalid name' do
     response = mutation(q, variables: { name: '' }, context: context)
-    expect(response.data['userSignUp']['errors'].present?).to eq(true)
+    expect(response.data['userSignUp']['errors'].select{ |error| error['field'] == 'name' }[0]['messages']).to include("can't be blank")
     expect(response.data['userSignUp']['user'].blank?).to eq(true)
   end
   

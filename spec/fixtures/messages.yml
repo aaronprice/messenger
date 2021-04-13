@@ -1,0 +1,5 @@
+default:
+  user: default
+  channel: default
+  body: 'This is a message'
+  image_url: 'http://www.example.com/image.gif'

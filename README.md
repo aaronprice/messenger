@@ -78,3 +78,31 @@ mutation ChatMessageCreate {
   }
 }
 ```
+
+# Query all messages in all channels
+
+```
+query Channels {
+  channels {
+    edges {
+      node {
+        id
+        name
+        messages {
+          edges {
+            node {
+              id
+              body
+              imageUrl
+              author {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```

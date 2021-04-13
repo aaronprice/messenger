@@ -10,12 +10,17 @@ module Chats
       
       field :id, ID, null: false
       field :name, String, null: false
+      field :messages, Chats::Types::Message.connection_type, null: true
 
       # == Relationships ========================================================
 
       # == Class Methods ========================================================
 
       # == Instance Methods =====================================================
+
+      def messages
+        object.messages
+      end
       
     end
   end

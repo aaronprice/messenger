@@ -7,7 +7,8 @@ class Message < ApplicationRecord
 
   # == Relationships ========================================================
 
-  belongs_to :channel_user
+  belongs_to :channel
+  belongs_to :user
 
   # == Validations ==========================================================
 

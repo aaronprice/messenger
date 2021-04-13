@@ -47,8 +47,7 @@ module Chats
       def create_message
         ActiveRecord::Base.transaction do
           channel = Channel.create_or_find_by!(name: channel_name.strip.downcase)
-          channel_user = ChannelUser.create_or_find_by!(channel: channel, user: current_user)
-          self.message = Message.create(channel_user: channel_user, body: body, image_url: image_url)
+          self.message = Message.create(channel: channel, user: current_user, body: body, image_url: image_url)
         end
       end
     end

@@ -23,11 +23,11 @@ module Chats
       # == Instance Methods =====================================================
 
       def author
-        object.channel_user.user
+        object.user
       end
 
       def channel
-        object.channel_user.channel
+        object.channel
       end
       
     end

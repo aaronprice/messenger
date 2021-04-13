@@ -108,6 +108,14 @@ type Error {
 }
 
 """
+An image from Giphy
+"""
+type Image {
+  id: ID!
+  url: String
+}
+
+"""
 The current authenticated user.
 """
 type Me {
@@ -205,7 +213,7 @@ type PageInfo {
 
 type Query {
   """
-  A list of channels and messages
+  A paginated list of channels and messages
   """
   channels(
     """
@@ -228,6 +236,36 @@ type Query {
     """
     last: Int
   ): ChannelConnection
+
+  """
+  Images from Giphy
+  """
+  images(search: String!): [Image!]
+
+  """
+  A paginated list of all users
+  """
+  users(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): UserConnection
 }
 
 """
@@ -265,4 +303,39 @@ Any user except the authenticated user
 type User {
   id: ID!
   name: String!
+}
+
+"""
+The connection type for User.
+"""
+type UserConnection {
+  """
+  A list of edges.
+  """
+  edges: [UserEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [User]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type UserEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: User
 }

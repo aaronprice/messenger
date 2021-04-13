@@ -53,3 +53,28 @@ mutation UserSignUp {
 
 After you've created a user, add the value of `authToken` to the environment header in GraphQL IDE with the key `X-USER-TOKEN`. You will be signed in as this user from this point on.
 
+### Create a message
+```
+mutation ChatMessageCreate {
+  chatMessageCreate(input: { 
+    channelName: "general", 
+    body: "Hello World!" 
+  }) {
+    message {
+      body
+      imageUrl
+      author {
+        id
+        name
+      }
+      channel {
+        name
+      }
+    }
+    errors {
+      field
+      messages
+    }
+  }
+}
+```

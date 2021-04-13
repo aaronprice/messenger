@@ -27,6 +27,7 @@ Clone the repo, setup the database and run migrations.
 $ git clone git@github.com:aaronprice/messenger.git
 $ cd messenger
 $ bundle
+$ bundle exec rails db:create
 $ bundle exec rails db:migrate
 ```
 

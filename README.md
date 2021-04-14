@@ -113,8 +113,6 @@ mutation ChatMessageCreate {
       }
       channel {
         name
-        usersCount
-        messagesCount
       }
     }
     errors {

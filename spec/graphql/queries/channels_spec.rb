@@ -4,7 +4,6 @@ describe 'channels', type: :graphql do
 
   let!(:user) { users(:default) }
   let!(:channel) { channels(:default) }
-  # let!(:channel_user) { channel_users(:default) }
   let!(:message) { messages(:default) }
   
   let(:context) {

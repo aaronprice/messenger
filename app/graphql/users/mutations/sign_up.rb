@@ -17,7 +17,7 @@ module Users
         else
           {
             user: nil,
-            errors: form.graphql_errors
+            errors: form.errors
           }
         end
       end

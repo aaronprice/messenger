@@ -32,8 +32,8 @@ describe 'chatMessageCreate', type: :graphql do
             }
           }
           errors {
-            field
-            messages
+            attribute
+            message
           }
         }
       }
@@ -63,7 +63,7 @@ describe 'chatMessageCreate', type: :graphql do
 
   it 'blank content' do
     response = mutation(q, variables: { channel_name: channel_name }, context: context)
-    expect(response.data['chatMessageCreate']['errors'].select{ |error| error['field'] == 'base' }[0]['messages']).to include('Either body or image_url is required')
+    expect(response.attribute_errors('chatMessageCreate', 'base')).to include('Either body or image_url is required')
   end
-  
+
 end

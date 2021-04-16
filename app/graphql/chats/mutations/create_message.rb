@@ -19,7 +19,7 @@ module Chats
         else
           {
             message: nil,
-            errors: form.graphql_errors
+            errors: form.errors
           }
         end
       end

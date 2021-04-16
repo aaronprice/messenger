@@ -12,6 +12,10 @@ module GraphQLHelper
       @data = args['data'] || nil
       @errors = args['errors'] || nil
     end
+
+    def attribute_errors(query_name, attribute)
+      @data[query_name]['errors'].select{ |error| error['attribute'] == attribute }.inject([]){ |arr, hash| arr << hash['message'] }
+    end
   end
 
   # basic query to interact with the GraphQL API.

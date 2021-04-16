@@ -17,8 +17,8 @@ describe 'userSignIn', type: :graphql do
             authToken
           }
           errors {
-            field
-            messages
+            attribute
+            message
           }
         }
       }
@@ -33,8 +33,8 @@ describe 'userSignIn', type: :graphql do
 
   it 'invalid name' do
     response = mutation(q, variables: { name: '' }, context: context)
-    expect(response.data['userSignUp']['errors'].select{ |error| error['field'] == 'name' }[0]['messages']).to include("can't be blank")
+    expect(response.attribute_errors('userSignUp', 'name')).to include("can't be blank")
     expect(response.data['userSignUp']['user'].blank?).to eq(true)
   end
-  
+
 end

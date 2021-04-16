@@ -85,8 +85,8 @@ mutation UserSignUp {
       authToken
     }
     errors {
-      field
-      messages
+      attribute
+      message
     }
   }
 }
@@ -116,8 +116,8 @@ mutation ChatMessageCreate {
       }
     }
     errors {
-      field
-      messages
+      attribute
+      message
     }
   }
 }

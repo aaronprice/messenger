@@ -1,15 +1,15 @@
 module Common
   module Types
     class Error < ::Types::BaseObject
-      
+
       # == Definitions ==========================================================
 
       description "An error from a rails object"
 
       # == Attributes ===========================================================
 
-      field :field, String, null: false
-      field :messages, [String], null: false
+      field :attribute, String, null: false
+      field :message, String, null: false
 
       # == Relationships ========================================================
 

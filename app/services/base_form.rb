@@ -146,17 +146,11 @@ class BaseForm
     v
   end
 
-  def graphql_errors
-    errors.map do |error|
-      OpenStruct.new(field: error.attribute, messages: [error.message])
-    end
-  end
-
   private
 
   def move_non_argument_errors_to_base
     base_keys = errors.attribute_names - arguments.keys - ['base', :base]
-    
+
     base_keys.each do |key|
       errors[key].each_with_index do |error_key, index|
         errors.add(:base, "#{key.to_s.humanize} #{errors[key][index]}")

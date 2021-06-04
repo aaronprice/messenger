@@ -8,7 +8,7 @@ module Users
 
       attr_accessor :user
 
-      property :name
+      property :name, as: :string, transform: [:strip]
 
       # == Extensions ===========================================================
 

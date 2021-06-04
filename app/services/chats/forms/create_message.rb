@@ -8,11 +8,11 @@ module Chats
 
       attr_accessor :message
 
-      property :current_user
+      property :current_user, as: :object
 
-      property :channel_name
-      property :body
-      property :image_url
+      property :channel_name, as: :string, transform: [:strip, :downcase]
+      property :body, as: :string, transform: [:strip]
+      property :image_url, as: :string, transform: [:strip]
 
       # == Extensions ===========================================================
 
@@ -44,11 +44,11 @@ module Chats
         errors.add(:base, 'Either body or image_url is required')
       end
 
-      def create_message        
+      def create_message
         ActiveRecord::Base.transaction do
           channel = Channel.create_or_find_by!(name: channel_name.strip.downcase)
           self.message = Message.create(channel: channel, user: current_user, body: body, image_url: image_url)
-          
+
           Chats::Operations::UpdateChannelStats.call(channel)
         end
       end

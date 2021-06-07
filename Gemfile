@@ -11,7 +11,7 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'graphql', '~> 1.12', '>= 1.12.3'
 gem 'giphy', '~> 3.0'
 gem 'sidekiq', '~> 6.2', '>= 6.2.1'
-gem 'back_ops', '~> 0.2.0'
+gem 'back_ops', '~> 1.0.0'
 
 # Assets
 gem 'sass-rails', '>= 6'

@@ -62,7 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    back_ops (0.2.0)
+    back_ops (1.0.0)
       activerecord (>= 6.1)
       pg (>= 1.2)
       redis (>= 4.2)
@@ -223,7 +223,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
-  back_ops (~> 0.2.0)
+  back_ops (~> 1.0.0)
   bootsnap (>= 1.4.4)
   factory_bot_rails (~> 6.1)
   giphy (~> 3.0)
